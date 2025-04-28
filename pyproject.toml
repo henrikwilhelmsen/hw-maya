@@ -1,0 +1,60 @@
+[project]
+name = "hw-maya"
+version = "0.1.0"
+description = "My Personal Maya tools for rigging and development"
+readme = "README.md"
+authors = [
+    { name = "Henrik Wilhelmsen", email = "contact@henrikwilhelmsen.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "pydantic>=2.10.6",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "basedpyright>=1.28.1",
+    "debugpy>=1.8.13",
+    "devin-dcc",
+    "maya-stubs>=0.4.1",
+    "ruff>=0.9.10",
+]
+
+[tool.basedpyright]
+include = ["src"]
+reportAny = false
+reportUnusedCallResult = false
+
+[tool.ruff]
+line-length = 88
+src = ["src"]
+target-version = "py310"
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "FIX002", # Leave TODO's
+    "TD002",  # Missing author in TODO
+    "TD003",  # Missing issue link in TODO
+    "S101",   # Ignore assert use (pytest)
+    "T201", # print found
+
+]
+per-file-ignores = { "tests/*" = [
+    "ARG001", # Unused argument (pytest fixtures)
+    "S101",   # Assert usage
+], "*live_scripts/*" = [
+    "D103", # ignore missing function documentation in scripts
+    ] }
+
+pydocstyle.convention = "google"
+
+[tool.uv.sources]
+devin-dcc = { git = "https://github.com/henrikwilhelmsen/devin-dcc", rev = "v0.1.2" }
