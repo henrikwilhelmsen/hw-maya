@@ -57,4 +57,4 @@ per-file-ignores = { "tests/*" = [
 pydocstyle.convention = "google"
 
 [tool.uv.sources]
-devin-dcc = { git = "https://github.com/henrikwilhelmsen/devin-dcc", rev = "v0.1.2" }
+devin-dcc = { git = "https://github.com/henrikwilhelmsen/devin-dcc", rev = "main" }
