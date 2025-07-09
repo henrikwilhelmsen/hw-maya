@@ -10,10 +10,11 @@ from maya import cmds
 
 
 def main() -> None:
+    """Create a locator at the selected object(s)."""
     for x in cmds.ls(selection=True):
         locator = f"{x}_locator"
         cmds.spaceLocator(name=locator)
-        cmds.setAttr(f"{locator}.scale", 15, 15, 15)
+        cmds.setAttr(f"{locator}.scale", 15, 15, 15)  # pyright: ignore[reportArgumentType]
         cmds.matchTransform(locator, x, position=True, rotation=True, scale=False)
 
 
